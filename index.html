@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego Canva</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body onload="iniciar();">
+    <header>
+        <h1>Game of Luffy</h1>
+    </header>
+    <canvas id="espacio_juego" width="1020" height="640" style=" background-image: url('fondo.png');"></canvas>
+    <img src="fondo.png" id="fondo" style="display: none;">
+    <img src="suelo.png" id="suelo" style="display: none;">
+    <img src="nube.png" id="nube" style="display: none;">
+    <img src="luffyp.png" id="luffy" style="display: none;">
+    <img src="luffyp copia.png" id="luffyDos" style="display: none;">
+    <script type="text/javascript">
+        function iniciar() {
+            var canvas = document.getElementById("espacio_juego");
+            var context = canvas.getContext("2d");
+            nube();
+            animarNube();
+        };
+
+        var posicionX = 0;
+        var intervalo;
+        var posicionXnube = 1276;
+        var posicionXnubeDos = 1000;
+        var posicionXnubeTres = 1600;
+        var tecla = "D";
+        var img2 = document.getElementById("luffy");
+        var luffyDos = document.getElementById("luffyDos");
+        var posicionXobj = Math.floor((Math.random() * (325 - 0 + 1)) + 0);
+        var posicionXobjDos = Math.floor((Math.random() * (665 - 340 + 1)) + 340);
+        var posicionXobjTres = Math.floor((Math.random() * (1005 - 680 + 1)) + 680);
+        var posicionYobj = 0;
+
+        window.onkeydown = function obtenerTecla(valor) {
+            tecla = valor.key
+            if (posicionX >= 0 && posicionX < 870 && (tecla == 'd' || tecla == 'D' || tecla == 'ArrowRight')) {
+                posicionX += 60;
+
+            }
+            else if (posicionX > 0 && (tecla == 'a' || tecla == 'A' || tecla == 'ArrowLeft')) {
+                posicionX -= 60;
+
+            }
+        };
+
+        function nube() {
+
+            var canvas3 = document.getElementById("espacio_juego");
+            var context3 = canvas3.getContext("2d");
+
+
+            var img3 = document.getElementById("nube");
+            
+            if ((posicionXobj >= posicionX && posicionXobj + 15 <= posicionX + 150) && (posicionYobj >= 350 && posicionYobj + 15 <= 550)) {
+                context3.clearRect(0, 0, 1020, 640);
+                alert("Has perdido");
+            } else {
+
+            
+
+            context3.clearRect(0, 0, 1020, 640);
+            if (posicionX >= 0 && posicionX < 870 && (tecla == 'd' || tecla == 'D' || tecla == 'ArrowRight')) {
+
+                context3.drawImage(img2, posicionX, 350, 150, 200);
+            }
+            else if (posicionX > 0 && (tecla == 'a' || tecla == 'A' || tecla == 'ArrowLeft')) {
+
+                context3.drawImage(luffyDos, posicionX, 350, 150, 200);
+            }
+
+
+            posicionXnube -= 60;
+            context3.drawImage(img3, posicionXnube, -70, 256, 256);
+
+            posicionXnubeDos -= 60;
+            context3.drawImage(img3, posicionXnubeDos, 60, 256, 256);
+
+            posicionXnubeTres -= 60;
+            context3.drawImage(img3, posicionXnubeTres, 90, 256, 256);
+
+
+            if (posicionXnube <= -256) {
+                posicionXnube = 1276;
+            }
+
+            if (posicionXnubeDos <= -256) {
+                posicionXnubeDos = 1276;
+            }
+
+            if (posicionXnubeTres <= -256) {
+                posicionXnubeTres = 1276;
+            }
+
+
+            context3.fillStyle = "red";
+            context3.fillRect(posicionXobj, posicionYobj, 25, 25);
+            context3.fillRect(posicionXobjDos, posicionYobj, 25, 25);
+            context3.fillRect(posicionXobjTres, posicionYobj, 25, 25);
+            posicionYobj += 40;
+
+            if (posicionYobj >= 600) {
+                posicionYobj = -30;
+                posicionXobj = Math.floor((Math.random() * (315 - 0 + 1)) + 0);
+                posicionXobjDos = Math.floor((Math.random() * (655 - 340 + 1)) + 340);
+                posicionXobjTres = Math.floor((Math.random() * (995 - 680 + 1)) + 680);
+            }
+        }
+        };
+
+        function animarNube() {
+            setInterval("nube()", 125);
+        };
+
+    </script>
+</body>
+
+</html>
