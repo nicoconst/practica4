@@ -60,7 +60,7 @@
 
             var img3 = document.getElementById("nube");
             
-            if ((posicionXobj >= posicionX && posicionXobj + 15 <= posicionX + 150) && (posicionYobj >= 350 && posicionYobj + 15 <= 550) || (posicionXobjDos >= posicionX && posicionXobjDos + 15 <= posicionX + 150) && (posicionYobj >= 350 && posicionYobj + 15 <= 550) || (posicionXobjTres >= posicionX && posicionXobjTres + 15 <= posicionX + 150) && (posicionYobj >= 350 && posicionYobj + 15 <= 550)) {
+            if (((posicionXobj >= posicionX && posicionXobj + 15 <= posicionX + 150) && (posicionYobj >= 350 && posicionYobj + 15 <= 550)) || ((posicionXobjDos >= posicionX && posicionXobjDos + 15 <= posicionX + 150) && (posicionYobj >= 350 && posicionYobj + 15 <= 550)) || ((posicionXobjTres >= posicionX && posicionXobjTres + 15 <= posicionX + 150) && (posicionYobj >= 350 && posicionYobj + 15 <= 550))) {
                 context3.clearRect(0, 0, 1020, 640);
                 alert("Has perdido");
             } else {
